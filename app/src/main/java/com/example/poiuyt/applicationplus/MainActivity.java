@@ -20,11 +20,11 @@ import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.location.LocationSettingsRequest;
 import com.google.android.gms.location.LocationSettingsResult;
+import com.google.android.gms.location.LocationSettingsStates;
 import com.google.android.gms.location.LocationSettingsStatusCodes;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener,
-        GoogleApiClient.ConnectionCallbacks,
-        GoogleApiClient.OnConnectionFailedListener {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener, GoogleApiClient.ConnectionCallbacks
+        , GoogleApiClient.OnConnectionFailedListener {
     Button sms, fb, email, location;
     TextView maps;
     private final int REQUEST_LOCATION = 200;
@@ -82,10 +82,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     public void sendSms() {
-        intent = new Intent(Intent.ACTION_VIEW);
-        intent.putExtra("sms_body", "Body of Message");
-        intent.setType("vnd.android-dir/mms-sms");
-        startActivity(intent);
+            intent = new Intent(Intent.ACTION_VIEW);
+            intent.putExtra("sms_body", "Body of Message");
+            intent.setType("vnd.android-dir/mms-sms");
+            startActivity(intent);
 //        }
     }
 
@@ -112,8 +112,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 .addConnectionCallbacks(this)
                 .addOnConnectionFailedListener(this).build();
         googleApiClient.connect();
-
-
     }
 
     @Override
@@ -125,8 +123,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onConnected(@Nullable Bundle bundle) {
         LocationRequest locationRequest = LocationRequest.create();
         locationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
-        locationRequest.setInterval(30 * 1000);
-        locationRequest.setFastestInterval(5 * 1000);
+        locationRequest.setInterval(REQUEST_LOCATION);
+        locationRequest.setFastestInterval(REQUEST_LOCATION/2);
         LocationSettingsRequest.Builder builder = new LocationSettingsRequest.Builder()
                 .addLocationRequest(locationRequest);
         builder.setAlwaysShow(true);
@@ -137,12 +135,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             @Override
             public void onResult(@NonNull LocationSettingsResult result) {
                 Status status = result.getStatus();
-//                    LocationSettingsStates state = result.getLocationSettingsStates();
+                    LocationSettingsStates state = result.getLocationSettingsStates();
                 switch (status.getStatusCode()) {
                     case LocationSettingsStatusCodes.SUCCESS:
                         break;
                     case LocationSettingsStatusCodes.RESOLUTION_REQUIRED:
-
                         try {
                             status.startResolutionForResult(MainActivity.this, 1000);
                         } catch (IntentSender.SendIntentException e) {
