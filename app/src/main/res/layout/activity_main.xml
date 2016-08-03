@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_main"
+    android:gravity="center"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.example.poiuyt.applicationplus.MapActivity">
+
+
+    <Button
+        android:id="@+id/sms"
+        android:layout_width="wrap_content"
+
+        android:layout_height="wrap_content"
+        android:text="sms"
+        android:textAllCaps="false" />
+
+    <Button
+        android:id="@+id/email"
+        android:textAllCaps="false"
+        android:layout_width="wrap_content"
+
+        android:layout_height="wrap_content"
+        android:text="email" />
+
+    <Button
+        android:id="@+id/location"
+        android:textAllCaps="false"
+        android:layout_width="wrap_content"
+
+        android:layout_height="wrap_content"
+        android:text="location" />
+
+    <Button
+        android:id="@+id/fb"
+        android:textAllCaps="false"
+        android:layout_width="wrap_content"
+
+        android:layout_height="wrap_content"
+        android:text="facebook" />
+    <TextView
+        android:id="@+id/checkin"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:text="Check in your position"
+        android:background="@color/colorAccent"/>
+
+</LinearLayout>
